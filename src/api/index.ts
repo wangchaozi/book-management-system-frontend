@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { UpdateBook } from "../pages/BookManage/UpdateBookModal";
 
 interface CreateBook {
   name: string;
@@ -41,4 +42,22 @@ export async function create(book: CreateBook) {
     description: book.description,
     cover: book.cover,
   });
+}
+
+export async function detail(id: number) {
+  return await axiosInstance.get(`/book/${id}`);
+}
+
+export async function update(book: UpdateBook) {
+  return await axiosInstance.put("/book/update", {
+    id: book.id,
+    name: book.name,
+    author: book.author,
+    description: book.description,
+    cover: book.cover,
+  });
+}
+
+export async function deleteBook(id: number) {
+  return await axiosInstance.delete(`/book/delete/${id}`);
 }
